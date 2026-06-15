@@ -37,7 +37,7 @@ export default function Favorites() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-12 pt-24 md:px-6">
+    <div className="mx-auto w-full max-w-7xl px-4 pb-12 pt-28 md:px-6 md:pt-24">
       <div className="mb-6">
         <h1 className="flex items-center gap-2 text-3xl font-extrabold text-ink">
           <HeartIcon filled className="h-7 w-7 text-accent-bright" /> My Favorites

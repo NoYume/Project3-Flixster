@@ -61,7 +61,12 @@ export default function MovieCarousel({
         spaceBetween={8}
         navigation
         keyboard={{ enabled: true }}
-        coverflowEffect={{ rotate: 28, stretch: 0, depth: 160, modifier: 1, slideShadows: false }}
+        // Scaled-down coverflow on phones; restored to the full 3D depth/rotate
+        // from the sm breakpoint up (Swiper breakpoints override top-level opts).
+        coverflowEffect={{ rotate: 18, stretch: 0, depth: 90, modifier: 1, slideShadows: false }}
+        breakpoints={{
+          640: { coverflowEffect: { rotate: 28, stretch: 0, depth: 160, modifier: 1, slideShadows: false } },
+        }}
         className="movie-swiper w-full"
         onSwiper={(swiper) => {
           swiperRef.current = swiper
@@ -70,13 +75,13 @@ export default function MovieCarousel({
         onSlideChange={reportFocus}
       >
         {movies.map((movie) => (
-          <SwiperSlide key={movie.id} style={{ width: 230, maxWidth: '70vw' }}>
+          <SwiperSlide key={movie.id} style={{ width: 'clamp(150px, 60vw, 230px)' }}>
             <MovieCard movie={movie} />
           </SwiperSlide>
         ))}
 
         {showLoadMore && (
-          <SwiperSlide style={{ width: 230, maxWidth: '70vw' }}>
+          <SwiperSlide style={{ width: 'clamp(150px, 60vw, 230px)' }}>
             <div className="flex aspect-[2/3] items-center justify-center rounded-squircle glass">
               <LoadMoreButton onClick={onLoadMore} loading={loadingMore} />
             </div>

@@ -43,7 +43,7 @@ export default function FocusDetailPanel({ movie }) {
       className="mx-auto mt-3 w-full max-w-3xl rounded-squircle glass p-5 text-center"
       style={{ boxShadow: 'var(--shadow-glass)' }}
     >
-      <h2 className="text-2xl font-bold text-ink">{movie.title}</h2>
+      <h2 className="text-xl font-bold text-ink sm:text-2xl">{movie.title}</h2>
 
       <div className="mt-2 flex justify-center">
         <StarRating value={rating} />
@@ -84,12 +84,12 @@ export default function FocusDetailPanel({ movie }) {
         </>
       )}
 
-      <div className="mt-4 flex justify-center gap-3">
+      <div className="mt-4 flex flex-wrap justify-center gap-3">
         <motion.button
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => openMovie(movie)}
-          className="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-ink"
+          className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-ink sm:px-6 sm:py-2.5"
           style={{ background: 'var(--color-accent)', boxShadow: 'var(--shadow-glow-amber)' }}
         >
           <PlayIcon className="h-4 w-4" /> Play
@@ -99,7 +99,7 @@ export default function FocusDetailPanel({ movie }) {
           whileTap={{ scale: 0.96 }}
           onClick={() => toggleFavorite(movie)}
           aria-pressed={favorited}
-          className="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition"
+          className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition sm:px-6 sm:py-2.5"
           style={{
             background: favorited ? 'var(--color-accent)' : 'rgba(255,255,255,0.08)',
             color: 'var(--color-ink)',

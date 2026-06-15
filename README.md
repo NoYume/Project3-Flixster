@@ -4,7 +4,7 @@ Submitted by: **Daniel Lam**
 
 Estimated time spent: **16** hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Flixster Deployed Site](https://project3-flixster.onrender.com/)
 
 ### Application Features
 
@@ -76,9 +76,9 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 #### STRETCH FEATURES
 
-- [ ] **Deployment**
-  - [ ] Website is deployed via Render.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
+- [x] **Deployment**
+  - [x] Website is deployed via Render.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
 - [x] **Embedded Movie Trailers**
   - [x] Within the pop-up modal, the movie trailer is embedded (TMDB videos endpoint → YouTube iframe).
     - [x] Users can play the trailer directly in the modal.

@@ -41,7 +41,7 @@ export default function SearchResults() {
   const displayed = useMemo(() => applyFilters(movies, filter), [movies, filter])
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-12 pt-24 md:px-6">
+    <div className="mx-auto w-full max-w-7xl px-4 pb-12 pt-28 md:px-6 md:pt-24">
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-ink">

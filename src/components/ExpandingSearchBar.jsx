@@ -81,7 +81,7 @@ export default function ExpandingSearchBar() {
             <motion.form
               onSubmit={handleSubmit}
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 220, opacity: 1 }}
+              animate={{ width: 'auto', opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 260, damping: 28 }}
               className="overflow-hidden"
@@ -93,7 +93,7 @@ export default function ExpandingSearchBar() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search movies…"
                 aria-label="Search movies"
-                className="w-[220px] rounded-full bg-panel-2/80 px-4 py-2 text-sm text-ink outline-none placeholder:text-muted focus:ring-2"
+                className="w-[150px] rounded-full bg-panel-2/80 px-4 py-2 text-sm text-ink outline-none placeholder:text-muted focus:ring-2 focus:ring-inset sm:w-[220px]"
                 style={{ '--tw-ring-color': 'var(--color-accent-bright)' }}
               />
             </motion.form>

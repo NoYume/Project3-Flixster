@@ -34,7 +34,7 @@ export default function Movies() {
   const displayed = useMemo(() => applyFilters(movies, filter), [movies, filter])
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-4 pt-20 md:px-6">
+    <div className="mx-auto w-full max-w-7xl px-4 pb-4 pt-28 md:px-6 md:pt-20">
       <div className="mb-3 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-ink">Movies</h1>

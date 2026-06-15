@@ -48,7 +48,7 @@ export default function FilterMenu({ value, onChange }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-            className="absolute right-0 z-30 mt-2 w-64 rounded-squircle glass p-4"
+            className="absolute right-0 z-30 mt-2 w-[min(16rem,calc(100vw-2rem))] rounded-squircle glass p-4"
             style={{ boxShadow: 'var(--shadow-glass)' }}
           >
             <p className="mb-2 text-xs font-bold uppercase tracking-wide text-muted">Sort by</p>
