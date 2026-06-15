@@ -1,44 +1,49 @@
-import { useState, useMemo, useCallback } from 'react'
-import { getPopular, discoverMovies } from '../services/tmdb.js'
-import { usePaginatedMovies } from '../hooks/usePaginatedMovies.js'
-import { applyFilters } from '../utils/sortMovies.js'
-import MovieCarousel from '../components/MovieCarousel.jsx'
-import FocusDetailPanel from '../components/FocusDetailPanel.jsx'
-import FilterMenu from '../components/FilterMenu.jsx'
-import Loader from '../components/Loader.jsx'
-import ErrorState from '../components/ErrorState.jsx'
+import { useState, useMemo, useCallback } from "react";
+import { getPopular, discoverMovies } from "../services/tmdb.js";
+import { usePaginatedMovies } from "../hooks/usePaginatedMovies.js";
+import { applyFilters } from "../utils/sortMovies.js";
+import MovieCarousel from "../components/MovieCarousel.jsx";
+import FocusDetailPanel from "../components/FocusDetailPanel.jsx";
+import FilterMenu from "../components/FilterMenu.jsx";
+import Loader from "../components/Loader.jsx";
+import ErrorState from "../components/ErrorState.jsx";
 
 // Movies page (CLAUDE.md §6.4): coverflow carousel + Load More + top-right
 // Filter + focus detail panel below the centered card.
 export default function Movies() {
-  const [filter, setFilter] = useState({ sort: 'popularity', genreId: null })
-  const [focused, setFocused] = useState(null)
-  const { genreId } = filter
+  const [filter, setFilter] = useState({ sort: "popularity", genreId: null });
+  const [focused, setFocused] = useState(null);
+  const { genreId } = filter;
 
   // Genre filtering is server-side (Discover) so it spans all pages, not just
   // the buffered ones; without a genre we use the Popular feed. Pagination
   // re-initializes when the genre changes.
   const fetchPage = useCallback(
     (page) =>
-      genreId ? discoverMovies({ genreId, sortBy: 'popularity.desc', page }) : getPopular(page),
-    [genreId]
-  )
+      genreId
+        ? discoverMovies({ genreId, sortBy: "popularity.desc", page })
+        : getPopular(page),
+    [genreId],
+  );
   const { movies, loading, error, hasMore, loadMore } = usePaginatedMovies(
     fetchPage,
     [genreId],
-    true
-  )
+    true,
+  );
 
   // Sort is applied client-side over the accumulated list (genre already
   // handled server-side, so applyFilters' genre branch is a harmless no-op).
-  const displayed = useMemo(() => applyFilters(movies, filter), [movies, filter])
+  const displayed = useMemo(
+    () => applyFilters(movies, filter),
+    [movies, filter],
+  );
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 pb-4 pt-28 md:px-6 md:pt-20">
       <div className="mb-3 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-ink">Movies</h1>
-          <p className="text-sm text-muted">Popular right now — browse the cover flow.</p>
+          <p className="text-sm text-muted">Browse the cover flow</p>
         </div>
         <FilterMenu value={filter} onChange={setFilter} />
       </div>
@@ -48,11 +53,15 @@ export default function Movies() {
       ) : error && movies.length === 0 ? (
         <ErrorState message="Couldn’t load movies." onRetry={loadMore} />
       ) : displayed.length === 0 && !hasMore ? (
-        <p className="py-16 text-center text-muted">No movies match this filter.</p>
+        <p className="py-16 text-center text-muted">
+          No movies match this filter.
+        </p>
       ) : (
         <>
           {displayed.length === 0 && (
-            <p className="py-4 text-center text-muted">No matches yet — load more to keep looking.</p>
+            <p className="py-4 text-center text-muted">
+              No matches yet — load more to keep looking.
+            </p>
           )}
           <MovieCarousel
             movies={displayed}
@@ -61,9 +70,11 @@ export default function Movies() {
             showLoadMore={hasMore}
             loadingMore={loading}
           />
-          {displayed.length > 0 && <FocusDetailPanel movie={focused || displayed[0]} />}
+          {displayed.length > 0 && (
+            <FocusDetailPanel movie={focused || displayed[0]} />
+          )}
         </>
       )}
     </div>
-  )
+  );
 }
