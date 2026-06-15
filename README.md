@@ -61,7 +61,7 @@ Deployed Application (optional): [Flixster Deployed Site](https://project3-flixs
     - [x] Search bar
     - [x] Movie list _(cover-flow carousel)_
     - [x] Footer section
-    - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
+    - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
 - [x] **Planning Documentation**
   - [x] Repository includes a `planning.md` file with:
     - [x] A **Component Architecture** section listing at least 5 components, each with its responsibility, what it renders, and its props.
@@ -72,7 +72,7 @@ Deployed Application (optional): [Flixster Deployed Site](https://project3-flixs
   - [x] When a movie's detail modal is opened, an AI-generated watch recommendation is displayed alongside the movie details.
   - [x] A loading state is shown while the AI response is being generated, and a graceful fallback message is shown if the AI call fails.
   - [x] `planning.md` includes an **AI Feature Spec** documenting role, task, inputs, output format, constraints, and failure behavior for the AI call.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, open your browser's DevTools **Network** tab, trigger the AI recommendation (open a movie modal), and show the outbound request going **directly to an AI API URL** (e.g., `openrouter.ai`) — not to a backend server URL. Graders need to see this call in the Network tab to award full credit.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, open your browser's DevTools **Network** tab, trigger the AI recommendation (open a movie modal), and show the outbound request going **directly to an AI API URL** (e.g., `openrouter.ai`) — not to a backend server URL. Graders need to see this call in the Network tab to award full credit.
 
 #### STRETCH FEATURES
 
@@ -103,23 +103,21 @@ Deployed Application (optional): [Flixster Deployed Site](https://project3-flixs
 
 ### Walkthrough Video
 
-`TODO://` Paste the **shareable link** to your animated app walkthrough below (replace `ADD_LOOM_LINK_HERE`). GitHub markdown won't render an embedded Loom player, so a plain link is what graders will use. Make sure the link is public and playable before submitting. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website. (🚫 Remove this paragraph after adding your walkthrough link.)
-
-**Walkthrough video:** [Flixster Walkthrough](ADD_LOOM_LINK_HERE)
+**Walkthrough video:** [Flixster Walkthrough](https://www.loom.com/share/7dfa2f5db46b4f1b960f1f6fb8b51d94)
 
 ### Reflection
 
 - Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+The topics over react, routing, and axios helped me learn how to config API calling in an easier way and also organize my web pages within the user experience and my codebase. I was unprepared on creating hooks and setting up the correct file formatting for the APIs, context management, and utils for sorting movies.
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+If I had more time, I would have worked on the UI experience when navigating as the website to me feels a bit clunky at times. I would have added a login feature to save favorites and watched across different devices. I would also like to reformat the mobile viewing experience since it seems like a water-downed version of the desktop version.
 
 - Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I was able to demonstrate all my features during my demo but my speaking on my project could've been more clear and energetic. Things that didn't go as planned was my presentation flow, I got a little off tracked but managed to showoff everything I wanted to. I would have liked implementing a different mobile view in comparison to the desktop version like moving the buttons at the bottom of the phone screen.
 
 ### Open-source libraries used
 
@@ -134,3 +132,7 @@ Add your response here
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+
+- Devarsh
+- Enes
+- Della
