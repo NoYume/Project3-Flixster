@@ -1,19 +1,188 @@
+@import "tailwindcss";
+
+/* LittleFilm — "Shanghai Night" design system (CLAUDE.md §4). Tailwind v4
+   @theme tokens become utilities automatically, e.g.
+   --color-accent -> bg-accent / text-accent / border-accent. */
+@theme {
+  /* Bases (charcoal, sampled from the warm Shanghai-skyline photo) */
+  --color-bg: #111315;
+  --color-panel: #1f2226;
+  --color-panel-2: #262a2f;
+  --color-panel-3: #333a42;
+
+  /* Warm accents (sampled from the golden tower lights) */
+  --color-accent: #e68a2e; /* primary CTA / active / Favorite */
+  --color-accent-bright: #f2c479; /* hover / glow / active-favorite */
+  --color-steel-deep: #41566c; /* gradient partner */
+  --color-steel: #7c94ac; /* secondary: Watched / links / filter */
+  --color-amber: #e6a33c; /* star rating gold */
+
+  /* Text */
+  --color-ink: #f5f5f5;
+  --color-muted: #9ba0a6;
+
+  /* Squircle radii */
+  --radius-squircle: 1.25rem;
+  --radius-squircle-lg: 1.75rem;
+
+  /* Soft diffused + warm glow shadows */
+  --shadow-glass: 0 18px 50px -12px rgba(0, 0, 0, 0.7);
+  --shadow-glow-amber:
+    0 0 0 1px rgba(242, 196, 121, 0.5), 0 8px 30px -6px rgba(230, 138, 46, 0.55);
+  --shadow-glow-steel:
+    0 0 0 1px rgba(124, 148, 172, 0.45), 0 8px 30px -6px rgba(65, 86, 108, 0.5);
+
+  /* Fonts */
+  --font-sans:
+    "Inter", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+  /* Spring easing (Framer falls back to these for CSS transitions) */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Global base --- */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+/* Fixed full-viewport Shanghai-night backdrop with a darkening scrim
+   so foreground content always stays legible (CLAUDE.md §4). */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to bottom, rgba(17, 19, 21, 0.55), rgba(17, 19, 21, 0.75)),
+    url("/src/assets/background-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Reset the old starter button styles — components style their own buttons. */
 button {
-  background-color: #282c34;
-  color: white;
+  font-family: inherit;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  background: none;
+  border: none;
+  color: inherit;
 }
 
-button:hover {
-  background-color: #777;
-  color: white;
+/* --- Reusable theme primitives --- */
+.glass {
+  background: rgba(31, 34, 38, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Custom amber scrollbar */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(230, 138, 46, 0.45);
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(242, 196, 121, 0.7);
+}
+
+/* Clean, minimal scrollbar for the Universal Modal body — thin track,
+   subtle translucent thumb that brightens to a warm gold on hover. */
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+}
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(242, 196, 121, 0.6);
+}
+
+/* --- Animations (loader dots, typing caret) --- */
+@keyframes blink-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.typing-caret::after {
+  content: "▍";
+  margin-left: 1px;
+  color: var(--color-accent-bright);
+  animation: blink-caret 0.9s step-end infinite;
+}
+
+@keyframes loader-bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.loader-dot {
+  animation: loader-bounce 1.2s infinite ease-in-out both;
+}
+
+/* Swiper coverflow: dim the non-focused slides for a cinematic stack */
+.movie-swiper .swiper-slide {
+  transition:
+    opacity 0.4s var(--ease-spring),
+    filter 0.4s var(--ease-spring);
+  opacity: 0.45;
+  filter: saturate(0.7);
+}
+.movie-swiper .swiper-slide-active {
+  opacity: 1;
+  filter: none;
+}
+.movie-swiper {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Clamp helpers for overviews */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
